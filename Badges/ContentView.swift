@@ -12,11 +12,11 @@ struct ContentView: View {
     @ObservedObject var viewModel = BadgeViewModel()
         
     var body: some View {
-        ScrollView { 
+        ScrollView {
             VStack {
-                
+                   
                 Button("Achieve A Random Challenge") {
-                    let randomChallenge = viewModel.challenges.randomElement()
+                    let randomChallenge = viewModel.challenges.filter {$0.stillAChallenge} .randomElement()
                     viewModel.challengeIsAchieved(CB: randomChallenge!)
                 }
                 

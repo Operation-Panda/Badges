@@ -57,10 +57,10 @@
 			children = (
 				D0E9CA772B8852A500619063 /* BadgesApp.swift */,
 				D0E9CA792B8852A500619063 /* ContentView.swift */,
-				D0E9CA7B2B8852A900619063 /* Assets.xcassets */,
-				D0E9CA7D2B8852A900619063 /* Preview Content */,
 				D0E9CA852B8B96BE00619063 /* BadgeStruct.swift */,
 				D0E9CA872B8B979500619063 /* BadgesViewModel.swift */,
+				D0E9CA7B2B8852A900619063 /* Assets.xcassets */,
+				D0E9CA7D2B8852A900619063 /* Preview Content */,
 			);
 			path = Badges;
 			sourceTree = "<group>";
@@ -288,6 +288,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,6 +318,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
