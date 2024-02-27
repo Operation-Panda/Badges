@@ -40,6 +40,7 @@ class BadgeViewModel: ObservableObject {
             ChallengeBadge(imageName: "100AssignmentsCompleted"),
             ChallengeBadge(imageName: "100EventsCompleted")
         ]
+        
         self.achievements = [
             AchievementBadge(imageName: "January"),
             AchievementBadge(imageName: "February"),
