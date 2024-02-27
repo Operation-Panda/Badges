@@ -71,22 +71,32 @@ class BadgeViewModel: ObservableObject {
         ]
     }
     
+    func achieveByImageName(name: String) {
+        for index in challenges.indices {
+            if challenges[index].imageName == name {
+                challengeIsAchieved(CB: challenges[index])
+            }
+        }
+    }
+    
     func addAchievement(imageName: String) {
-        achievements.append(contentsOf: [
-            AchievementBadge(imageName: imageName)
-        ])
+        achievements.append(AchievementBadge(imageName: imageName))
     }
     
     func addChallenge(imageName: String) {
-        challenges.append(contentsOf: [
-            ChallengeBadge(imageName: imageName)
-        ])
+        challenges.append(ChallengeBadge(imageName: imageName))
     }
     
     func challengeIsAchieved(CB: ChallengeBadge) {
         let index = challenges.firstIndex(of: CB)!
         challenges[index].stillAChallenge = false
         achievements[index].stillAnAchievement = true
+    }
+    
+    func achievementIsUnAchieved(AB: AchievementBadge) {
+        let index = achievements.firstIndex(of: AB)!
+        challenges[index].stillAChallenge = true
+        achievements[index].stillAnAchievement = false
     }
     
 }

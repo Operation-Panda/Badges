@@ -4,20 +4,91 @@
 //
 //  Created by Roaa on 2/22/24.
 //
-
+ 
 import SwiftUI
 
 struct ContentView: View {
     
     @ObservedObject var viewModel = BadgeViewModel()
-        
+    @ObservedObject var EAVM = EventsAndAssignViewModel()
+    
+    @State var selectedMonth = "January"
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    
     var body: some View {
         ScrollView {
-            VStack {
-                Button("Achieve A Random Challenge") {
-                    let randomChallenge = viewModel.challenges.filter {$0.stillAChallenge} .randomElement()
+            VStack(spacing: 15) { 
+                
+                HStack {
+                    Picker("Please choose a month", selection: $selectedMonth) {
+                        ForEach(months, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Button("Add Assignment") {
+                        EAVM.addAssignForSpecificMonth(month: selectedMonth)
+                        print(Assignment.assignCount)
+                        
+                        if EAVM.checkIfMonthHasTenAssignments(month: selectedMonth) {
+                            viewModel.achieveByImageName(name: selectedMonth)
+                        }
+                        
+                        switch Event.eventCount {
+                            case 1: viewModel.achieveByImageName(name: "firstEventCompleted")
+                            case 10: viewModel.achieveByImageName(name: "10EventsCompleted")
+                            case 25: viewModel.achieveByImageName(name: "25EventsCompleted")
+                            case 50: viewModel.achieveByImageName(name: "50EventsCompleted")
+                            case 75: viewModel.achieveByImageName(name: "75EventsCompleted")
+                            case 100: viewModel.achieveByImageName(name: "100EventsCompleted")
+                            default: break
+                        }
+                      
+                        switch Assignment.assignCount {
+                            case 1: viewModel.achieveByImageName(name: "firstAssignmentCompleted")
+                            case 10: viewModel.achieveByImageName(name: "10AssignmentsCompleted")
+                            case 25: viewModel.achieveByImageName(name: "25AssignmentsCompleted")
+                            case 50: viewModel.achieveByImageName(name: "50AssignmentsCompleted")
+                            case 75: viewModel.achieveByImageName(name: "75AssignmentsCompleted")
+                            case 100: viewModel.achieveByImageName(name: "100AssignmentsCompleted")
+                            default: break
+                        }
+                    
+                    }
+                }
+                
+                
+                Button {
+                    let randomChallenge = viewModel.challenges.filter {$0.stillAChallenge}.randomElement()
                     if let RC = randomChallenge {
                         viewModel.challengeIsAchieved(CB: RC)
+                    }
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color("LightGrayColor"))
+                            .stroke(.black) 
+                        Text("Achieve A Random Challenge")
+                            .foregroundColor(Color("Navy"))
+                            .bold()
+                            .padding()
+                    }
+                }
+                .padding(.vertical)
+                
+                Button {
+                    let randomAchievement = viewModel.achievements.filter {$0.stillAnAchievement}.randomElement()
+                    if let RA = randomAchievement {
+                        viewModel.achievementIsUnAchieved(AB: RA)
+                    }
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color("LightGrayColor"))
+                            .stroke(.black)
+                        Text("Unachieve A Random Achievement")
+                            .foregroundColor(Color("Navy"))
+                            .bold()
+                            .padding()
                     }
                 }
                 
@@ -46,12 +117,19 @@ struct ContentView: View {
                                 .opacity(0)
                             
                             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 20) {
-                                ForEach(viewModel.achievements) { achievement in
-                                    if achievement.stillAnAchievement {
-                                        Image(achievement.completeImageName)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .shadow(radius: 8)
+                                ForEach(viewModel.achievements.indices, id: \.self) { index in
+                                    if viewModel.achievements[index].stillAnAchievement {
+                                        Button {
+                                            withAnimation {
+                                                viewModel.achievements[index].degrees = (viewModel.achievements[index].degrees == .zero) ? 360 : .zero
+                                            }
+                                        } label: {
+                                            Image(viewModel.achievements[index].completeImageName)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .shadow(radius: 8)
+                                                .rotation3DEffect(.degrees(viewModel.achievements[index].degrees), axis: (x: 0, y: 1, z: 0))
+                                        }
                                     }
                                 }
                             }
@@ -85,12 +163,19 @@ struct ContentView: View {
                                 .frame(height: 40)
                                 .opacity(0)
                             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 20) {
-                                ForEach(viewModel.challenges) { challenge in
-                                    if challenge.stillAChallenge {
-                                        Image(challenge.completeImageName)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .shadow(radius: 8)
+                                ForEach(viewModel.challenges.indices, id: \.self) { index in
+                                    if viewModel.challenges[index].stillAChallenge {
+                                        Button {
+                                            withAnimation {
+                                                viewModel.challenges[index].degrees = (viewModel.challenges[index].degrees == .zero) ? 360 : .zero
+                                            }
+                                        } label: {
+                                            Image(viewModel.challenges[index].completeImageName)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .shadow(radius: 8)
+                                                .rotation3DEffect(.degrees(viewModel.challenges[index].degrees), axis: (x: 0, y: 1, z: 0))
+                                        }
                                     }
                                 }
                             }
@@ -110,15 +195,3 @@ struct ContentView: View {
     ContentView()
 }
 
-
-//Button {
-//    withAnimation {
-//        degrees = (degrees == .zero) ? 360 : .zero
-//    }
-//} label: {
-//   Image("JanuaryAchievement")
-//       .resizable()
-//       .aspectRatio(contentMode: .fit)
-//       .shadow(radius: 8)
-//       .rotation3DEffect(.degrees(degrees), axis: (x: 0, y: 1, z: 0))
-//}

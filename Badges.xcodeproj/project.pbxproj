@@ -13,6 +13,7 @@
 		D0E9CA7F2B8852A900619063 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0E9CA7E2B8852A900619063 /* Preview Assets.xcassets */; };
 		D0E9CA862B8B96BF00619063 /* BadgeStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E9CA852B8B96BE00619063 /* BadgeStruct.swift */; };
 		D0E9CA882B8B979500619063 /* BadgesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E9CA872B8B979500619063 /* BadgesViewModel.swift */; };
+		D0E9CA8A2B8D531F00619063 /* EventsAndAssign.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E9CA892B8D531F00619063 /* EventsAndAssign.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		D0E9CA7E2B8852A900619063 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D0E9CA852B8B96BE00619063 /* BadgeStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeStruct.swift; sourceTree = "<group>"; };
 		D0E9CA872B8B979500619063 /* BadgesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewModel.swift; sourceTree = "<group>"; };
+		D0E9CA892B8D531F00619063 /* EventsAndAssign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAndAssign.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				D0E9CA772B8852A500619063 /* BadgesApp.swift */,
 				D0E9CA792B8852A500619063 /* ContentView.swift */,
 				D0E9CA852B8B96BE00619063 /* BadgeStruct.swift */,
+				D0E9CA892B8D531F00619063 /* EventsAndAssign.swift */,
 				D0E9CA872B8B979500619063 /* BadgesViewModel.swift */,
 				D0E9CA7B2B8852A900619063 /* Assets.xcassets */,
 				D0E9CA7D2B8852A900619063 /* Preview Content */,
@@ -147,6 +150,7 @@
 				D0E9CA7A2B8852A500619063 /* ContentView.swift in Sources */,
 				D0E9CA882B8B979500619063 /* BadgesViewModel.swift in Sources */,
 				D0E9CA782B8852A500619063 /* BadgesApp.swift in Sources */,
+				D0E9CA8A2B8D531F00619063 /* EventsAndAssign.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
