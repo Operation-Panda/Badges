@@ -27,7 +27,6 @@ struct ContentView: View {
                     }
                     Button("Add Assignment") {
                         EAVM.addAssignForSpecificMonth(month: selectedMonth)
-                        print(Assignment.assignCount)
                         
                         if EAVM.checkIfMonthHasTenAssignments(month: selectedMonth) {
                             viewModel.achieveByImageName(name: selectedMonth)
@@ -55,10 +54,21 @@ struct ContentView: View {
                     
                     }
                 }
+                .frame(maxWidth: .infinity)
+                .foregroundColor(Color("Navy"))
+                .bold()
+                .padding(10)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                    .fill(Color("LightGrayColor"))
+                    .stroke(.black)
+                )
+                .padding(.vertical)
                 
                 
                 Button {
                     let randomChallenge = viewModel.challenges.filter {$0.stillAChallenge}.randomElement()
+                    
                     if let RC = randomChallenge {
                         viewModel.challengeIsAchieved(CB: RC)
                     }
@@ -79,6 +89,15 @@ struct ContentView: View {
                     let randomAchievement = viewModel.achievements.filter {$0.stillAnAchievement}.randomElement()
                     if let RA = randomAchievement {
                         viewModel.achievementIsUnAchieved(AB: RA)
+                        if RA.badgeType == .month {
+                            EAVM.removeAssignForSpecificMonth(month: RA.imageName)
+                        } else if RA.badgeType == .special {
+                            if RA.rewardType == .assignment {
+                                EAVM.resetAssignCount()
+                            } else {
+                                EAVM.resetEventCount()
+                            }
+                        }
                     }
                 } label: {
                     ZStack {
@@ -91,6 +110,7 @@ struct ContentView: View {
                             .padding()
                     }
                 }
+                .padding(.vertical)
                 
                 VStack(spacing: -40) {
                     ZStack {

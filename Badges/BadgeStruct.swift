@@ -7,9 +7,21 @@
 
 import Foundation
 
+enum BadgeType {
+    case special
+    case month
+}
+
+enum RewardType {
+    case event
+    case assignment
+}
+
 struct ChallengeBadge: Identifiable, Equatable {
     let id = UUID()
     var stillAChallenge = true
+    let badgeType: BadgeType
+    let rewardType: RewardType
     let imageName: String
     var completeImageName: String {
         imageName + "Challenge"
@@ -20,6 +32,8 @@ struct ChallengeBadge: Identifiable, Equatable {
 struct AchievementBadge: Identifiable, Equatable {
     let id = UUID()
     var stillAnAchievement = false
+    let badgeType: BadgeType
+    let rewardType: RewardType
     let imageName: String
     var completeImageName: String {
         imageName + "Achievement"

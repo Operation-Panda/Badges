@@ -64,9 +64,25 @@ class EventsAndAssignViewModel: ObservableObject {
         Assignment.increaseAssignCount()
     }
     
+    func resetEventCount() {
+        Event.eventCount = 0
+    }
+    
+    func resetAssignCount() {
+        Assignment.assignCount = 0
+    }
+    
     func addAssignForSpecificMonth(month: String) {
         addNewAssignment()
         monthToAssignCount[month]! += 1
+    }
+    
+    func removeAssignForSpecificMonth(month: String) {
+        monthToAssignCount[month]! = 0
+    }
+    
+    func removeEventsForSpecificMonth(month: String) {
+        monthToAssignCount[month]! = 0
     }
     
     func checkIfMonthHasTenAssignments(month: String) -> Bool {
